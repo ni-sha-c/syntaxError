@@ -18,16 +18,23 @@ include('../config/settings.php');
 
 class ToiScraper {
 
-	public function getArticleLinks($keyword )
+	public function getArticleLinks($keyword)
 	{
-		global $articleSources;
-		$results = array();
-		$url = $articleSources["toi"]["search"];
-		$html = file_get_html("$url$keyword");	
-			foreach($html->find('div.title a') as $element) 
-				$results[] = $element->href;
+		global $articleSources, $customSearchUrl, $toiSearchID;
 
-		return $results;
+		$finalUrl = $customSearchUrl."&cx=$toiSearchID&q=$keyword";
+		$result = json_decode(file_get_contents($finalUrl), true);
+
+		$links = array();
+		foreach ($result["items"] as $key => $value) {
+			$links[] = $value["link"];
+		}
+		// $url = $articleSources["toi"]["search"];
+		// $html = file_get_html("$url$keyword");	
+		// 	foreach($html->find('div.title a') as $element) 
+		// 		$results[] = $element->href;
+
+		return $links;
 	}
 
 	public function getArticleContent($url)
@@ -65,14 +72,17 @@ class ToiScraper {
 
 $scraper = new ToiScraper();
 $links = $scraper->getArticleLinks('modi');
+echo "\nGot Links\n";
 for($i = 1 ; $i < 2; $i++)
 {
-	$articleContent = $scraper->getArticleContent($articleSources["toi"]["base"]. $links[$i]);
-	$comments = $scraper->getComments($articleContent["commentUrl"]));	
+	$articleContent = $scraper->getArticleContent($links[$i]);
+	echo "\nGot Content\n";
+	$comments = $scraper->getComments($articleContent["commentUrl"]);	
+	echo "\nGot Comments\n";
 }
 
-print_r($articleContent);
-echo "<br><br>";
+// print_r($articleContent);
+// echo "<br><br>";
 print_r($comments);
 
 

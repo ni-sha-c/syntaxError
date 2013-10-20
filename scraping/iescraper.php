@@ -22,6 +22,8 @@ class IeScraper {
 
 	public function getArticleContent($url)
 	{
+		if(!$url))
+			return false;
 		$html = file_get_html($url);
 		$result["title"] = $html->find('div#ie2013-content h1', 0)->innertext;
 		$result["content"] = "";
@@ -53,6 +55,8 @@ class IeScraper {
 
 	public function getComments($url)
 	{
+		if(!$url))
+			return false;
 		$html = file_get_html($url, true);
 		$comments = array();
 		$threadData = json_decode($html->find('script#disqus-threadData', 0)->innertext, 1);

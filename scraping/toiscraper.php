@@ -22,6 +22,8 @@ class ToiScraper {
 
 	public function getArticleContent($url)
 	{
+		if(!$url))
+			return false;
 		$html = file_get_html($url);
 		$result["title"] = $html->find('h1.multi-line-title-1', 0)->innertext;
 		$result["content"] = "";
@@ -45,6 +47,8 @@ class ToiScraper {
 
 	public function getComments($url)
 	{
+		if(!$url))
+			return false;
 		$html = file_get_html($url, true);
 		$comments = array();
 		foreach ($html->find('div.cmtBox div div.box') as $key => $value) {

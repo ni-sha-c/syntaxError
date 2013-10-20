@@ -17,7 +17,7 @@ class ToiScraper {
 			$links[] = $value["link"];
 		}
 
-		echo "\nGot article links for $keyword\n";
+		// echo "\nGot article links for $keyword\n";
 		return $links;
 	}
 
@@ -39,7 +39,7 @@ class ToiScraper {
 			}
 
 			$result["commentUrl"] = "http://timesofindia.indiatimes.com/opinions/$id?commenttype=mostrecommended&sorttype=bycount";
-		echo "\nGot article content for $url\n";
+		// echo "\nGot article content for $url\n";
 
 		$html->clear(); 
 		unset($html);
@@ -58,7 +58,7 @@ class ToiScraper {
 				$comments[] = $ele->innertext;
 		}
 
-		echo "\nGot article comments for $url\n";
+		// echo "\nGot article comments for $url\n";
 		
 		$html->clear(); 
 		unset($html);

@@ -9,7 +9,6 @@ class HinduScraper {
 
 		$keyword = urlencode($keyword);
 		$finalUrl = $customSearchUrl."&cx=$hinduSearchID&q=$keyword";
-		echo $finalUrl;
 
 		$result = json_decode(file_get_contents($finalUrl), true);
 
@@ -18,7 +17,7 @@ class HinduScraper {
 			$links[] = $value["link"];
 		}
 
-		echo "\nGot article links for $keyword\n";
+		// echo "\nGot article links for $keyword\n";
 		return $links;
 	}
 
@@ -37,7 +36,7 @@ class HinduScraper {
 		foreach ($html->find('div#comment-section h4') as $key => $value)
 			$result["comments"][] = $value->innertext;
 	    
-		echo "\nGot article content for $url\n";
+		// echo "\nGot article content for $url\n";
 		
 		$html->clear(); 
 		unset($html);

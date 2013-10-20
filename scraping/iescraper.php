@@ -18,7 +18,7 @@ class IeScraper {
 				$links[] = $value["link"];
 		}
 
-		echo "\nGot article links for $keyword\n";
+		// echo "\nGot article links for $keyword\n";
 		return $links;
 	}
 
@@ -48,7 +48,7 @@ class IeScraper {
 	    if(isset($dq_shortname[1]) && isset($dq_identifier[1]))
 	    	$result["commentUrl"] = "http://disqus.com/embed/comments/?f=".$dq_shortname[1]."&t_i=".$dq_identifier[1];
 
-		echo "\nGot article content for $url\n";
+		// echo "\nGot article content for $url\n";
 
 		$html->clear(); 
 		unset($html);
@@ -66,7 +66,7 @@ class IeScraper {
 			$comments[] = $value["raw_message"];
 		}
 
-		echo "\nGot article content for $url\n";
+		// echo "\nGot article content for $url\n";
 
 		$html->clear(); 
 		unset($html);

@@ -1,22 +1,23 @@
 <?php 
 
-
+	require_once 'config/settings.php';
 	class getpop
 	{
 
 
-		function get($name)
+		function pop_score($url)
 		{
 			//Name of politician
-			$pol_name = $name;
+			list($type, $score, $mixed) = $this->sentiment($url);
+			return $score;
 						
 		
 		}
 	
-		function sentiment($api_key, $urlparam)
+		function sentiment($urlparam)
 		{
-			$url="http://access.alchemyapi.com/calls/url/URLGetTextSentiment";
-			$response=file_get_contents($url."?apikey={$api_key}&url={$urlparam}&outputMode=json");
+			global $alchemyEndPoint, $alchemy_api_key;
+			$response=file_get_contents($alchemyEndPoint."?apikey={$alchemy_api_key}&url={$urlparam}&outputMode=json");
 			$response=json_decode($response,true);
 			$type = $response["docSentiment"]["type"];
 			$score = $response["docSentiment"]["score"];
@@ -25,17 +26,6 @@
 
 		}	
 
-		function tar_sentiment($api_key, $urlparam)
-		{
-		
-
-		}
-
 	}
 
-	/*$urlparam="http://www.cnn.com/2009/CRIME/01/13/missing.pilot/index.html";
-	$api_key="4033ce5c39cdb94b7ab3361b5b9329cb33437ea7";
-	list($t, $s, $m) = sentiment($api_key, $urlparam);
-	echo $t;
-	echo $s;
-	echo $m;*/
+

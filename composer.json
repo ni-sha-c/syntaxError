@@ -1,0 +1,5 @@
+{
+		    "require": {
+					        "torophp/torophp": "dev-master"
+									    }
+}

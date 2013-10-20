@@ -1,0 +1,9 @@
+body{
+	padding-top:0px;
+}
+.result{
+	height:120px;
+	background-color: black;
+	padding-left:80px;
+	padding-right:80px;
+}

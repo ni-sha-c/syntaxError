@@ -1,0 +1,33 @@
+<VirtualHost *:80>
+        ServerAdmin contact@sdslabs.co.in
+    ServerName senti.local
+    #Change the below two lines
+    #with the absolute path 
+    #to where you have cloned studyportal
+        DocumentRoot /home/rushil/projects/Super-robot-monkey-team-hyperforce-go
+        <Directory /home/rushil/projects/Super-robot-monkey-team-hyperforce-go>
+                #Do not show indexes
+                #Do not follow symlinks
+                Options -Indexes -MultiViews
+                Order allow,deny
+                allow from all
+                <IfModule mod_rewrite.c>
+                        RewriteEngine on
+                        RewriteCond %{REQUEST_FILENAME} !-f
+                        RewriteCond %{REQUEST_FILENAME} !-d
+                        RewriteCond $1 !^(index\.php)
+                        RewriteRule ^(.*)$ index.php/$1 [L]
+                </IfModule>
+
+        </Directory>
+
+        ErrorLog ${APACHE_LOG_DIR}/senti.error.log
+
+        # Possible values include: debug, info, notice, warn, error, crit,
+        # alert, emerg.
+        LogLevel warn
+
+        CustomLog ${APACHE_LOG_DIR}/senti.local.access.log combined
+
+</VirtualHost>
+

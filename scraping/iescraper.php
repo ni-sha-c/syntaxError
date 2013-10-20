@@ -14,7 +14,8 @@ class IeScraper {
 
 		$links = array();
 		foreach ($result["items"] as $key => $value) {
-			$links[] = $value["link"];
+			if(!strpos($value["link"], "picture-gallery"))
+				$links[] = $value["link"];
 		}
 
 		echo "\nGot article links for $keyword\n";

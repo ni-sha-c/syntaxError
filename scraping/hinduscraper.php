@@ -34,6 +34,9 @@ class HinduScraper {
 			$result["comments"][] = $value->innertext;
 	    
 		echo "\nGot article content for $url\n";
+		
+		$html->clear(); 
+		unset($html);
 		return $result;
 	}
 

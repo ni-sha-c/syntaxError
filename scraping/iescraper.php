@@ -45,6 +45,9 @@ class IeScraper {
 	    	$result["commentUrl"] = "http://disqus.com/embed/comments/?f=".$dq_shortname[1]."&t_i=".$dq_identifier[1];
 
 		echo "\nGot article content for $url\n";
+
+		$html->clear(); 
+		unset($html);
 		return $result;
 	}
 
@@ -59,6 +62,8 @@ class IeScraper {
 
 		echo "\nGot article content for $url\n";
 
+		$html->clear(); 
+		unset($html);
 		return $comments;
 	}
 }

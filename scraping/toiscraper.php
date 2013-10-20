@@ -1,6 +1,5 @@
 <?
 
-require_once('../lib/simplehtmldom_1_5/simple_html_dom.php');
 require_once('../config/settings.php');
 
 class ToiScraper {
@@ -39,6 +38,8 @@ class ToiScraper {
 			$result["commentUrl"] = "http://timesofindia.indiatimes.com/opinions/$id?commenttype=mostrecommended&sorttype=bycount";
 		echo "\nGot article content for $url\n";
 
+		$html->clear(); 
+		unset($html);
 		return $result;
 	}
 
@@ -53,7 +54,9 @@ class ToiScraper {
 		}
 
 		echo "\nGot article comments for $url\n";
-
+		
+		$html->clear(); 
+		unset($html);
 		return $comments;
 	}
 }

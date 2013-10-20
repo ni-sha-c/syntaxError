@@ -1,9 +1,8 @@
 <?
 
-include('../lib/simplehtmldom_1_5/simple_html_dom.php');
-include('../config/settings.php');
+require_once('../config/settings.php');
 
-class ToiScraper {
+class HinduScraper {
 
 	public function getArticleLinks($keyword)
 	{
@@ -17,6 +16,7 @@ class ToiScraper {
 			$links[] = $value["link"];
 		}
 
+		echo "\nGot article links for $keyword\n";
 		return $links;
 	}
 
@@ -32,26 +32,27 @@ class ToiScraper {
 		$result["comments"] = array();
 		foreach ($html->find('div#comment-section h4') as $key => $value)
 			$result["comments"][] = $value->innertext;
-			
+	    
+		echo "\nGot article content for $url\n";
 		return $result;
 	}
 
 }
 
-$scraper = new ToiScraper();
+$scrapers["hindu"]  = new HinduScraper();
 // $links = $scraper->getArticleLinks('modi');
 //Did this for testing to save on google search api queries
 
-$links[0] = "http://www.thehindu.com/news/national/its-modi-all-the-way-at-bhopal-rally/article5168712.ece";
-echo "\nGot Links\n";
-print_r($links);
-for($i = 0; $i < 1; $i++)
-{
-	$articleContent = $scraper->getArticleContent($links[$i]);
-	echo "\nGot Content\n";
-}
+// $links[0] = "http://www.thehindu.com/news/national/its-modi-all-the-way-at-bhopal-rally/article5168712.ece";
+// echo "\nGot Links\n";
+// print_r($links);
+// for($i = 0; $i < 1; $i++)
+// {
+// 	$articleContent = $scraper->getArticleContent($links[$i]);
+// 	echo "\nGot Content\n";
+// }
 
-print_r($articleContent);
+// print_r($articleContent);
 
 
 

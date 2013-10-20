@@ -1,9 +1,8 @@
 <?
 
-include('../lib/simplehtmldom_1_5/simple_html_dom.php');
-include('../config/settings.php');
+require_once('../config/settings.php');
 
-class ToiScraper {
+class IeScraper {
 
 	public function getArticleLinks($keyword)
 	{
@@ -17,6 +16,7 @@ class ToiScraper {
 			$links[] = $value["link"];
 		}
 
+		echo "\nGot article links for $keyword\n";
 		return $links;
 	}
 
@@ -44,6 +44,7 @@ class ToiScraper {
 	    if(isset($dq_shortname[1]) && isset($dq_identifier[1]))
 	    	$result["commentUrl"] = "http://disqus.com/embed/comments/?f=".$dq_shortname[1]."&t_i=".$dq_identifier[1];
 
+		echo "\nGot article content for $url\n";
 		return $result;
 	}
 
@@ -56,27 +57,29 @@ class ToiScraper {
 			$comments[] = $value["raw_message"];
 		}
 
+		echo "\nGot article content for $url\n";
+
 		return $comments;
 	}
 }
 
-$scraper = new ToiScraper();
+$scrapers["ie"]  = new IEScraper();
 // $links = $scraper->getArticleLinks('modi');
 
 //Did this for testing to save on google search api queries
-$links[0] = "http://www.indianexpress.com/news/modi-model-the-pathani-kurta-is-likely-to-be-in-narendra-modis-wardrobe/1182774";
-echo "\nGot Links\n";
-print_r($links);
-for($i = 0; $i < 1; $i++)
-{
-	$articleContent = $scraper->getArticleContent($links[$i]);
-	echo "\nGot Content\n";
-	print_r($articleContent);
-	$comments = $scraper->getComments($articleContent["commentUrl"]);	
-	echo "\nGot Comments\n";
-}
+// $links[0] = "http://www.indianexpress.com/news/modi-model-the-pathani-kurta-is-likely-to-be-in-narendra-modis-wardrobe/1182774";
+// echo "\nGot Links\n";
+// print_r($links);
+// for($i = 0; $i < 1; $i++)
+// {
+// 	$articleContent = $scraper->getArticleContent($links[$i]);
+// 	echo "\nGot Content\n";
+// 	print_r($articleContent);
+// 	$comments = $scraper->getComments($articleContent["commentUrl"]);	
+// 	echo "\nGot Comments\n";
+// }
 
-print_r($comments);
+// print_r($comments);
 
 ?>
 

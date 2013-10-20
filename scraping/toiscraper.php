@@ -1,7 +1,7 @@
 <?
 
-include('../lib/simplehtmldom_1_5/simple_html_dom.php');
-include('../config/settings.php');
+require_once('../lib/simplehtmldom_1_5/simple_html_dom.php');
+require_once('../config/settings.php');
 
 class ToiScraper {
 
@@ -17,6 +17,7 @@ class ToiScraper {
 			$links[] = $value["link"];
 		}
 
+		echo "\nGot article links for $keyword\n";
 		return $links;
 	}
 
@@ -36,6 +37,8 @@ class ToiScraper {
 			}
 
 			$result["commentUrl"] = "http://timesofindia.indiatimes.com/opinions/$id?commenttype=mostrecommended&sorttype=bycount";
+		echo "\nGot article content for $url\n";
+
 		return $result;
 	}
 
@@ -48,24 +51,27 @@ class ToiScraper {
 			if($ele->tag == "span")
 				$comments[] = $ele->innertext;
 		}
+
+		echo "\nGot article comments for $url\n";
+
 		return $comments;
 	}
 }
 
-$scraper = new ToiScraper();
-$links = $scraper->getArticleLinks('modi');
-echo "\nGot Links\n";
-for($i = 1 ; $i < 2; $i++)
-{
-	$articleContent = $scraper->getArticleContent($links[$i]);
-	echo "\nGot Content\n";
-	$comments = $scraper->getComments($articleContent["commentUrl"]);	
-	echo "\nGot Comments\n";
-}
+$scrapers["toi"] = new ToiScraper();
+// $links = $scraper->getArticleLinks('modi');
+// echo "\nGot Links\n";
+// for($i = 1 ; $i < 2; $i++)
+// {
+// 	$articleContent = $scraper->getArticleContent($links[$i]);
+// 	echo "\nGot Content\n";
+// 	$comments = $scraper->getComments($articleContent["commentUrl"]);	
+// 	echo "\nGot Comments\n";
+// }
 
-print_r($articleContent);
-echo "<br><br>";
-print_r($comments);
+// print_r($articleContent);
+// echo "<br><br>";
+// print_r($comments);
 
 
 

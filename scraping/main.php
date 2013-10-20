@@ -1,9 +1,9 @@
 <?
-
-require 'init.php';
-require 'toiscraper.php';
-require 'iescraper.php';
-require 'hinduscraper.php';
+require 'config/settings.php';
+require 'scraping/init.php';
+require 'scraping/toiscraper.php';
+require 'scraping/iescraper.php';
+require 'scraping/hinduscraper.php';
 
 
 function getAllDetails($keyword)
@@ -39,8 +39,9 @@ function getDetailsBySource($source,$keyword)
 			$details[$link]["comments"] = $scraper->getComments($details[$link]["commentUrl"]);
 
 	}
+	return $details;
 }
 
 //getAllDetails('modi');
-getDetailsBySource('Ie','sachin%20tendulkar');
+//getDetailsBySource('Ie','sachin%20tendulkar');
 ?>

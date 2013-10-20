@@ -1,7 +1,6 @@
 <?
 
-require_once('../config/settings.php');
-
+// include(ROOT.'/config/settings.php');
 class HinduScraper {
 
 	public function getArticleLinks($keyword)
@@ -10,6 +9,8 @@ class HinduScraper {
 
 		$keyword = urlencode($keyword);
 		$finalUrl = $customSearchUrl."&cx=$hinduSearchID&q=$keyword";
+		echo $finalUrl;
+
 		$result = json_decode(file_get_contents($finalUrl), true);
 
 		$links = array();

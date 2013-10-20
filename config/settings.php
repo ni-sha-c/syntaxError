@@ -11,5 +11,4 @@ $toiSearchID = "010961665768017960356:tyb6vy7xp5e";
 $hinduSearchID = "010961665768017960356:trzulzp-s_4";
 
 $customSearchUrl = "https://www.googleapis.com/customsearch/v1?key=$apiKey";
-
 ?>

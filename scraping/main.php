@@ -25,5 +25,22 @@ function getAllDetails($keyword)
 	}
 }
 
-getAllDetails('modi');
+function getDetailsBySource($source,$keyword)
+{
+	$links = array();
+	$details = array();
+	$scrapername = $source.'Scraper';
+	$scraper = new $scrapername;
+	$links = $scraper->getArticleLinks($keyword);
+	foreach($links as $index=>$link)
+	{
+		$details[$link] = $scraper->getArticleContent($link);
+		if(!isset($details[$link]["comments"]))
+			$details[$link]["comments"] = $scraper->getComments($details[$link]["commentUrl"]);
+
+	}
+}
+
+//getAllDetails('modi');
+getDetailsBySource('Ie','sachin%20tendulkar');
 ?>

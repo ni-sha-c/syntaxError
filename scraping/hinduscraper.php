@@ -8,6 +8,7 @@ class HinduScraper {
 	{
 		global $articleSources, $customSearchUrl, $hinduSearchID;
 
+		$keyword = urlencode($keyword);
 		$finalUrl = $customSearchUrl."&cx=$hinduSearchID&q=$keyword";
 		$result = json_decode(file_get_contents($finalUrl), true);
 

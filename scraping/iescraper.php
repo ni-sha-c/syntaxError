@@ -8,6 +8,7 @@ class IeScraper {
 	{
 		global $articleSources, $customSearchUrl, $ieSearchID;
 
+		$keyword = urlencode($keyword);
 		$finalUrl = $customSearchUrl."&cx=$ieSearchID&q=$keyword";
 		$result = json_decode(file_get_contents($finalUrl), true);
 

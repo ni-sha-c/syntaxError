@@ -8,6 +8,7 @@ class ToiScraper {
 	{
 		global $articleSources, $customSearchUrl, $toiSearchID;
 
+		$keyword = urlencode($keyword);
 		$finalUrl = $customSearchUrl."&cx=$toiSearchID&q=$keyword";
 		$result = json_decode(file_get_contents($finalUrl), true);
 

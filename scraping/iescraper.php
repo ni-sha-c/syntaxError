@@ -22,7 +22,7 @@ class IeScraper {
 
 	public function getArticleContent($url)
 	{
-		if(!$url))
+		if(!$url)
 			return false;
 		$html = file_get_html($url);
 		$result["title"] = $html->find('div#ie2013-content h1', 0)->innertext;
@@ -55,7 +55,7 @@ class IeScraper {
 
 	public function getComments($url)
 	{
-		if(!$url))
+		if(!$url)
 			return false;
 		$html = file_get_html($url, true);
 		$comments = array();

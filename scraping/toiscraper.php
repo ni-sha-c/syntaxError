@@ -22,7 +22,7 @@ class ToiScraper {
 
 	public function getArticleContent($url)
 	{
-		if(!$url))
+		if(!$url)
 			return false;
 		$html = file_get_html($url);
 		$result["title"] = $html->find('h1.multi-line-title-1', 0)->innertext;
@@ -47,7 +47,7 @@ class ToiScraper {
 
 	public function getComments($url)
 	{
-		if(!$url))
+		if(!$url)
 			return false;
 		$html = file_get_html($url, true);
 		$comments = array();

@@ -22,7 +22,7 @@ class HinduScraper {
 
 	public function getArticleContent($url)
 	{
-		if(!$url))
+		if(!$url)
 			return false;
 		$html = file_get_html($url);
 		$result["title"] = $html->find('h1.detail-title', 0)->innertext;

@@ -1,5 +1,6 @@
 <?php
 require('scraping/main.php');
+require 'api_calls/helper.php';
 
 class HomeHandler{
 	function get() {
@@ -11,7 +12,11 @@ class HomeHandler{
 		$source = $_POST['source'];
 		$keystring = $_POST['keystring'];
 		$details = getDetailsBySource($source,$keystring);
-		echo json_encode($details);
+		// echo json_encode($details[0]["comments"]);
+		foreach ($details as $key => $article) {
+			$scores[$key] = apiCall($article["comments"]);
+		}
+		echo json_encode($scores);
 
 	}
 }

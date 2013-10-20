@@ -32,11 +32,14 @@ function getDetailsBySource($source,$keyword)
 	$scrapername = $source.'Scraper';
 	$scraper = new $scrapername;
 	$links = $scraper->getArticleLinks($keyword);
+	$c = 0;
 	foreach($links as $index=>$link)
 	{
-		$details[$link] = $scraper->getArticleContent($link);
-		if(!isset($details[$link]["comments"]))
-			$details[$link]["comments"] = $scraper->getComments($details[$link]["commentUrl"]);
+		if($c++ > 5)
+			break;
+		$details[$index] = $scraper->getArticleContent($link);
+		if(!isset($details[$index]["comments"]))
+			$details[$index]["comments"] = htmlspecialchars_decode($scraper->getComments($details[$index]["commentUrl"]));
 
 	}
 	return $details;
